@@ -78,7 +78,7 @@ export default function Links() {
                 className="w-full"
               >
                 {createIsLoading ? (
-                  <Loader2 className=" animate-spin h-4 w-4 " />
+                  <Loader2 className=" animate-spin h-4 w-4" />
                 ) : (
                   "Gerar Link"
                 )}
