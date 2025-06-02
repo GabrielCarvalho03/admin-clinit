@@ -30,5 +30,7 @@ declare namespace NodeJS {
     STRIPE_PRICE_CLINITT_DEFAULT: string;
     RESEND_API_KEY: string;
     NEXT_PUBLIC_URL: string;
+    STRIPE_DISCOUNT_148: string;
+    STRIPE_DISCOUNT_97: string;
   }
 }
