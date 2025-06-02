@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().email("Email inválido"),
@@ -15,6 +17,7 @@ const loginSchema = z.object({
 });
 type LoginForm = z.infer<typeof loginSchema>;
 const Login: React.FC = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -26,29 +29,27 @@ const Login: React.FC = () => {
   });
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
-    // try {
-    //   const success = await login(data.email, data.password);
-    //   if (success) {
-    //     toast({
-    //       title: "Login realizado com sucesso!",
-    //       description: "Bem-vindo ao Clinitt.ai Admin Dashboard"
-    //     });
-    //   } else {
-    //     toast({
-    //       title: "Erro no login",
-    //       description: "Email ou senha inválidos",
-    //       variant: "destructive"
-    //     });
-    //   }
-    // } catch (error) {
-    //   toast({
-    //     title: "Erro no login",
-    //     description: "Ocorreu um erro inesperado. Tente novamente.",
-    //     variant: "destructive"
-    //   });
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      router.push("/link");
+      // if (success) {
+      //   toast({
+      //     title: "Login realizado com sucesso!",
+      //     description: "Bem-vindo ao Clinitt.ai Admin Dashboard"
+      //   });
+      // } else {
+      //   toast({
+      //     title: "Erro no login",
+      //     description: "Email ou senha inválidos",
+      //     variant: "destructive"
+      //   });
+      // }
+    } catch (error) {
+      toast.error("Erro no login", {
+        description: "Ocorreu um erro inesperado. Tente novamente.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-clinitt-light to-clinitt-secondary/20">
