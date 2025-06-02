@@ -28,4 +28,10 @@ export const useLinks = create<UseLinkProps>((set) => ({
       setCreateIsLoading(false);
     }
   },
+
+  handleCopyLink: () => {
+    const { generatedLink } = useLinks.getState();
+    navigator.clipboard.writeText(generatedLink);
+    toast.success("Link copiado com sucesso!");
+  },
 }));

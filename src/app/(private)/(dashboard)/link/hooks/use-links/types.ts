@@ -9,4 +9,5 @@ export interface UseLinkProps {
   generatedLink: string;
   setGeneratedLink: (value: string) => void;
   handleCreateLink: (value: paymentValue) => Promise<void>;
+  handleCopyLink: () => void;
 }

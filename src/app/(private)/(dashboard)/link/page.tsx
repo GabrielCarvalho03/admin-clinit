@@ -9,7 +9,7 @@ import {
   SelectValue,
   SelectTrigger,
 } from "@/components/ui/select";
-import { Copy, Link } from "lucide-react";
+import { Copy, Link, Loader2 } from "lucide-react";
 import { useLinks } from "./hooks/use-links/use-links";
 import { Input } from "@/components/ui/input";
 import { formatCurrency } from "@/utils/formatCurrency";
@@ -21,6 +21,7 @@ export default function Links() {
     selectPrice,
     setSelectPrice,
     handleCreateLink,
+    handleCopyLink,
   } = useLinks();
 
   const priceOptions = [
@@ -73,10 +74,14 @@ export default function Links() {
 
               <Button
                 onClick={() => handleCreateLink(selectPrice)}
-                disabled={createIsLoading}
+                disabled={createIsLoading || !selectPrice}
                 className="w-full"
               >
-                Gerar Link de Pagamento
+                {createIsLoading ? (
+                  <Loader2 className=" animate-spin h-4 w-4 " />
+                ) : (
+                  "Gerar Link"
+                )}
               </Button>
 
               {generatedLink && (
@@ -89,7 +94,7 @@ export default function Links() {
                     <Button
                       variant="outline"
                       size="icon"
-                      // onClick={handleCopyLink}
+                      onClick={() => handleCopyLink()}
                       title="Copiar link"
                     >
                       <Copy className="h-4 w-4" />
