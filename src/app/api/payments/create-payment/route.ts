@@ -20,8 +20,8 @@ export async function POST(request: Request) {
           ? []
           : [
               body.discounts == "148"
-                ? { coupon: "loC9yN0g" }
-                : { coupon: "Ztju8qhh" },
+                ? { coupon: process.env.STRIPE_DISCOUNT_148 }
+                : { coupon: process.env.STRIPE_DISCOUNT_97 },
             ],
       payment_intent_data: {},
       phone_number_collection: {
